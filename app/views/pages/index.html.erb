@@ -1,0 +1,18 @@
+<h1>Pages#index</h1>
+<p>Find me in app/views/pages/index.html.erb</p>
+<script>
+<%connId=params[:connId]%>
+<%session[connId]=params[:timeout].to_i%>
+<%session[connId+"time"]=Time.now.to_i%>
+var timeout= <%=session[:connId]%>
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      // document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+  };
+  setTimeout(function(){ 
+  xhttp.open("GET",'../api/success', true);
+  xhttp.send();
+ },timeout*1000);
+</script>
